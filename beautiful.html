@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<style>
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body style="background-color: #0e0e0e">
+        <div id="container">
+            <video class="center" id="video" controls muted onplay="openFullscreen()">
+                <source id="v1" src="C:\Users\Mario\Desktop\everythingisbeautiful\everythingisbeautiful_.mp4" type="video/mp4">
+                Your browser does not support the HTML video. 
+            </video>
+        </div>
+    </body>
+    <script type="text/javascript">
+        var elem = document.getElementById("video");
+
+        document.addEventListener("fullscreenchange", function() {
+            if (!document.requestFullscreen) {
+                elem.style.height = "100%";
+                elem.style.width = "100%";
+            }
+        }, false)
+            /*
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                if (window.innerHeight == screen.height) {
+                        elem.parentNode.requestFullscreen();
+                        elem.style.height = "100%";
+                        elem.style.width = "100%";
+                } else {
+                    setTimeout(function() {
+                        elem.parentNode.requestFullscreen();
+                        console.log("Requested Fullscreen")
+                    }, 500)
+                   
+                }
+                
+            }
+        }, true)
+        */
+        function openFullscreen(e) {
+            setTimeout(function() {
+                if (elem.requestFullscreen) {
+                    elem.parentNode.requestFullscreen();
+                    elem.style.height = "100%";
+                    elem.style.width = "100%";
+                    document.getElementById("video").removeAttribute("controls");
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                    document.getElementById("video").removeAttribute("controls");
+                } else if (elem.msRequestFullscreen) { /* IE11 */
+                    elem.msRequestFullscreen();
+                    document.getElementById("video").removeAttribute("controls");
+                }
+            }, 4000)
+        }
+    </script>
+</html>
+
